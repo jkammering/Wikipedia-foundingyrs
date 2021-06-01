@@ -1,12 +1,7 @@
 import re
-import string
 import wikipedia
-import time
-import wikipediaapi
 import pandas as pd
-import requests
 import Levenshtein as lev
-import datetime
 from fuzzywuzzy import process, fuzz
 from time import sleep
 from selenium import webdriver
@@ -23,7 +18,7 @@ result_df = pd.DataFrame(columns=('search-name', 'Wikipedia-page', 'year-founded
 
 standard_url = 'https://en.wikipedia.org/wiki/{uni}'
 
-path_chromedriver = r'C:\Users\jonathan.kammering\OneDrive - Statista GmbH\Desktop\Python\Scraping\system\chromedriver_win32\chromedriver.exe'
+path_chromedriver = r'C:User\chromedriver.exe'
 options = Options()
 #options.add_argument('--headless')
 driver = webdriver.Chrome(path_chromedriver, options=options)
@@ -62,7 +57,6 @@ for i in range(0, len(df)):
                             topic = topix.replace("\r"," ").replace('\n', ' ')
                         estab = topic[:11].lower().strip()
                         if estab == 'established':
-                            print(topic)
                             pattern = re.compile(r'\d\d\d\d')
                             match = pattern.search(topic)
                             year = match[0]
